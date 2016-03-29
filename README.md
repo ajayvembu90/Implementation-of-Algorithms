@@ -2,7 +2,7 @@
 
 #The below are the details of the projects present
 
-#SP0
+<h3>SP0</h3>
 This has three files<br/>
 <ul>
 <li>	ImplementSorts.java - which implement the merge sort and has a priority sorted(Heap Sort)  implemented.
