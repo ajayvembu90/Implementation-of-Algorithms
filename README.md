@@ -68,7 +68,7 @@ The below are the MST's<br/
 <li>	AVLTree.java - To be modified
 </ul>
 
-<h3>LP1<h3>
+<h3>LP1</h3>
 <ul>
 <li>	BigArithmetic.java - This has basic arithmetic operations of big numbers using lists (A+B, A-B, A^b, A*B) for base-10 numbers.
 </ul>
