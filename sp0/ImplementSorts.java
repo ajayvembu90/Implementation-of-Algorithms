@@ -2,30 +2,26 @@ package sp0;
 
 import java.io.FileWriter;
 import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.PriorityQueue;
-//import java.util.concurrent.ThreadLocalRandom;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class ImplementSorts {
 	
 	
 	public static void main(String[] args)throws IOException{
-		MergeSortGeneric<String> ms = new MergeSortGeneric<String>();
-		//Integer[] inputArray = new Integer[3000000];
+		MergeSortGeneric<Integer> ms = new MergeSortGeneric<Integer>();
+		Integer[] inputArray = new Integer[50000000];
 		
-		String[] inputArray = {"zach","yang","kumar","balaji","ajay"};
 		
-		//for (int i = 0; i< 3000000; i++)
-			//inputArray[i] = ThreadLocalRandom.current().nextDouble(1.0, 3000000.0 + 1.0);
-		
-		//for (int i = 3000000,m=0; i>= 1; i--)
-		  //inputArray[m++] = i;
+		for (int i = inputArray.length,m=0; i>= 1; i--)
+		   inputArray[m++] = i;
 		
 		System.out.println("Numbers Generated...");
 		
 		FileWriter writerObject1 = new FileWriter("inputElements.txt");
 		
-		for (String element : inputArray){
+		
+		for (Integer element : inputArray){
 			//writerObject1.write(Integer.toString(element));
 			writerObject1.write(element);
 			writerObject1.write("\n");
@@ -48,15 +44,14 @@ public class ImplementSorts {
 		
 		FileWriter writerObject2 = new FileWriter("sortedElementsMergeSort.txt");
 		
-		for (String element : inputArray){
-			//writerObject2.write(Integer.toString(element));
+		for (Integer element : inputArray){
 			writerObject2.write(element);
 			writerObject2.write("\n");
 		}
 		
 		System.out.println("Output file generated for Merge Sort...");
 		writerObject2.close();
-		/*
+		
        // Priority Queue Sort
 		
 		ArrayList<Integer> inputForPQ = new ArrayList<Integer>();
@@ -89,7 +84,6 @@ public class ImplementSorts {
 		
 		System.out.println("Output file generated for Priority Queue Sort...");
 		writerObject3.close();
-		*/
 		
 	}
 
