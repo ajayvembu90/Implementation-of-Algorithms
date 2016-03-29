@@ -47,8 +47,9 @@ This has eight java files<br/>
 <li>	Edge.java
 <li>	Graph.java
 <li>	Vertex.java
-The below are two priority queues<br/>
+
 </ul>
+The below are two priority queues<br/>
 <ul>
 <li>	Index.java - helper for priority queues (PQ)
 <li>	PQ.java - The PQ interface
