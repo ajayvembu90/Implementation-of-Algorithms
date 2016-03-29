@@ -1,59 +1,8 @@
 package sp0;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Stack;
 
-public class MergeSortGeneric<E extends Comparable<E>> {
-
-	public void mergeSortStackImplementation(E[] input,int p,int r){
-		
-		Stack<MergeInstant> miStack = new Stack<MergeInstant>();
-		ArrayDeque<MergeInstant> miQueue = new ArrayDeque<MergeInstant>();
-		
-		int q = (p+r)/2;
-		MergeInstant mi = new MergeInstant();
-		mi.p = p;
-		mi.q = q;
-		mi.r = r;
-		miQueue.add(mi);
-		
-		while (!miQueue.isEmpty()){
-			MergeInstant currentMI = miQueue.remove();
-			miStack.push(currentMI);
-			if (currentMI.p < currentMI.q){
-				MergeInstant mi1 = new MergeInstant();
-				mi1.p = currentMI.p;
-				mi1.q = (currentMI.p + currentMI.q) / 2;
-				mi1.r = currentMI.q;
-				miQueue.add(mi1);
-			}
-			if ( ( currentMI.q + 1 ) < currentMI.r){
-				MergeInstant mi1 = new MergeInstant();
-				mi1.p = currentMI.q+1;
-				mi1.q = ((currentMI.q + 1) + currentMI.r) / 2;
-				mi1.r = currentMI.r;
-				miQueue.add(mi1);
-			}
-		}
-	
-		while (!miStack.empty()){
-			MergeInstant currentMI = miStack.pop();
-			System.out.println(currentMI.p + " " + currentMI.q + " " + currentMI.r);
-			merge(input,currentMI.p,currentMI.q,currentMI.r);
-		}
-		
-		/*
-		merge(input,6,6,7);
-		merge(input,4,4,5);
-		merge(input,2,2,3);
-		merge(input,0,0,1);
-		merge(input,4,5,7);
-		merge(input,0,1,3);
-		merge(input,0,3,7);
-		*/	
-	}
-	
+public class MergeSortGeneric<E extends Comparable<E>> {	
 	public void mergeSort(E[] input,int p,int r){
 		if (p < r){
 			int q = (p + r) / 2;
@@ -102,23 +51,4 @@ public class MergeSortGeneric<E extends Comparable<E>> {
 		}
     }
 	
-	
-	public static void main(String[] args){
-		MergeSortGeneric<Integer> msg = new MergeSortGeneric<Integer>();
-		Integer[] input = {10,11,7,6,13,12,15,4};
-		
-		msg.mergeSortStackImplementation(input, 0, input.length-1);
-		
-		
-		for (int each : input){
-			System.out.println(each);
-		}
-		
-	}
-}
-
-class MergeInstant{
-	int p = 0;
-	int q = 0;
-	int r = 0;
 }
