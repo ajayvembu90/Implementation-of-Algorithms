@@ -3,7 +3,7 @@
 #The below are the details of the projects present
 
 #SP0
-This has three files\n
+This has three files<br/>
 •	ImplementSorts.java - which implement the merge sort and has a priority sorted(Heap Sort)  implemented.
 •	MergeSortGeneric.java - The generic version of merge sort Implementation
 •	MergeSort.java - The merge sort which only supports for integer numbers.
