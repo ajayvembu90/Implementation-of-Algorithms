@@ -4,11 +4,13 @@
 
 #SP0
 This has three files<br/>
-•	ImplementSorts.java - which implement the merge sort and has a priority sorted(Heap Sort)  implemented.
-•	MergeSortGeneric.java - The generic version of merge sort Implementation
-•	MergeSort.java - The merge sort which only supports for integer numbers.
-•	This project analyzes the running time of merge sort and heap sort.
-•	Java's System.currentTimeMillis() has been used to analyze the running time.
+<ul>
+<li>	ImplementSorts.java - which implement the merge sort and has a priority sorted(Heap Sort)  implemented.
+<li>	MergeSortGeneric.java - The generic version of merge sort Implementation
+<li>	MergeSort.java - The merge sort which only supports for integer numbers.
+<li>	This project analyzes the running time of merge sort and heap sort.
+<li>	Java's System.currentTimeMillis() has been used to analyze the running time.
+</ul>
 
 #SP1
 This has three files
