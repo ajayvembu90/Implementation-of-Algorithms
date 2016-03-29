@@ -56,7 +56,7 @@ The below are two priority queues<br/>
 <li>	BinaryHeap.java - Normal implementation of PQ's using Binary Heap
 <li>	IndexedHeap.java - Indexed PQ version
 </ul>
-The below are the MST's<br/
+The below are the MST's<br/>
 <ul>
 
 <li>MST.java - The are two version of MST's here PRIM1 which uses binary heaps and PRIM2 which uses Indexed Heaps.
