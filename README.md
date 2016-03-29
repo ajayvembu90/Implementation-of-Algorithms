@@ -47,13 +47,18 @@ This has eight java files<br/>
 <li>	Edge.java
 <li>	Graph.java
 <li>	Vertex.java
-<li>	The below are two priority queues
+The below are two priority queues<br/>
+</ul>
+<ul>
 <li>	Index.java - helper for priority queues (PQ)
 <li>	PQ.java - The PQ interface
 <li>	BinaryHeap.java - Normal implementation of PQ's using Binary Heap
 <li>	IndexedHeap.java - Indexed PQ version
-<li>	The below are the MST's
-<li>	MST.java - The are two version of MST's here PRIM1 which uses binary heaps and PRIM2 which uses Indexed Heaps.
+</ul>
+The below are the MST's<br/
+<ul>
+
+<li>MST.java - The are two version of MST's here PRIM1 which uses binary heaps and PRIM2 which uses Indexed Heaps.
 </ul>
 
 <h3>SP4</h3>
