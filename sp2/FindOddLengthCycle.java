@@ -1,6 +1,8 @@
 package sp2;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -57,6 +59,157 @@ public class FindOddLengthCycle {
 		Vertex parent;
 		int oddLength;
 	}
+		
+	// to maintain the check cycle result
+	class CheckCycleResult{
+		Vertex cycledVertex;
+		boolean isCycle;
+		CheckCycleResult(Vertex u,boolean isCycle){
+			this.cycledVertex = u;
+			this.isCycle = isCycle;
+		}
+	}
+	
+	// to check if a cycle exist 
+	List<Edge> checkIfCycleExists(Graph g){
+		List<Edge> edgesInCycle = new ArrayList<Edge>();
+		checkIfCycleExists(g.verts.get(1),g,edgesInCycle);
+		return edgesInCycle;
+	}
+
+	
+	/*
+	 * to check if there is a cycle in a graph 
+	 * runs in O(V+E)
+	 */
+	Vertex checkIfCycleExists(Vertex u,Graph g,List<Edge> edgesInCycle){
+		if (u.seen){
+			// if the below condition is met then a cycle is found
+			if (u.cycleTestInd)
+				return u;
+			else
+				return null;
+		}
+		else{
+			u.seen = true;
+			// set the index to check for cycle
+			u.cycleTestInd = true;
+			Vertex cycledVertex = null;
+			// to check for all the adjacent vertex of a corresponding vertex
+			for (Edge e : u.Adj){
+				Vertex v = e.otherEnd(u);
+				cycledVertex = checkIfCycleExists(v,g,edgesInCycle);
+				// print the cycle of vertices by back tracking
+				if (cycledVertex!= null && cycledVertex.name != u.name){
+					edgesInCycle.add(e);
+					//System.out.println(e);
+					break;
+				}
+				else{
+					// to print the first vertex in the cycle
+					if (cycledVertex!= null && cycledVertex.name == u.name){
+						//System.out.println(e);
+						edgesInCycle.add(e);
+						g.foundCycle = true;
+						cycledVertex =  null;
+						break;
+					}
+					// break if a single cycle is found 
+					if (g.foundCycle)
+						break;
+				}
+			}
+			// reset the index
+			
+			u.cycleTestInd = false;
+			return cycledVertex;
+		}
+	}
+
+	
+	/*
+	 * to check if there is a cycle in a graph 
+	 * runs in O(V+E)
+	 */
+	CheckCycleResult checkIfCycle(Vertex u){
+		if (u.seen){
+			// if the below condition is met then a cycle is found
+			if (u.cycleTestInd){
+				//System.out.println(u.name);
+				return new CheckCycleResult(u,true);
+			}
+			else
+				return new CheckCycleResult(null,false);
+		}
+		else{
+			u.seen = true;
+			// set the index to check for cycle
+			u.cycleTestInd = true;
+			CheckCycleResult cCR = null;
+			// to check for all the adjacent vertex of a corresponding vertex
+			for (Edge e : u.Adj){
+				Vertex v = e.otherEnd(u);
+				cCR = checkIfCycle(v);
+				// print the cycle of vertices by back tracking
+				if (cCR.cycledVertex!= null && cCR.cycledVertex.name != u.name){
+					//System.out.println(u.name);
+					System.out.println(e);
+					break;
+				}
+				else{
+					if (cCR.cycledVertex!= null && cCR.cycledVertex.name == u.name){
+						//System.out.println(u.name);
+						System.out.println(e);
+						cCR =  new CheckCycleResult(null,true);
+						break;
+					}
+					// if cycledVertex is null and isCycle is true then break 
+					if (cCR.isCycle)
+						break;
+				}
+			}
+			if (cCR == null)
+				cCR = new CheckCycleResult(null,false);
+			// reset the index
+			u.cycleTestInd = false;
+			return cCR;
+		}
+	}
+	
+	CheckCycleResult checkIfCycle(Vertex u, boolean[] vertexStack){
+		if (u.seen){
+			if (vertexStack[u.name]){
+				System.out.println(u.name);
+				return new CheckCycleResult(u,true);
+			}
+			else
+				return new CheckCycleResult(null,false);
+		}
+		else{
+			u.seen = true;
+			vertexStack[u.name] = true;
+			CheckCycleResult cCR = null;
+			for (Edge e : u.Adj){
+				Vertex v = e.otherEnd(u);
+				cCR = checkIfCycle(v,vertexStack);
+				if (cCR.cycledVertex!= null && cCR.cycledVertex.name != u.name){
+					System.out.println(u.name);
+					break;
+				}
+				else{
+					if (cCR.cycledVertex!= null && cCR.cycledVertex.name == u.name){
+						System.out.println(u.name);
+						cCR =  new CheckCycleResult(null,true);
+						break;
+					}
+				}
+			}
+			if (cCR == null)
+				cCR = new CheckCycleResult(null,false);
+			vertexStack[u.name] = false;
+			return cCR;
+		}
+	}
 	
 	ResultOfFindingOddLengthCycle findOddLengthCycle(Vertex A,Vertex B){
 		ResultOfFindingOddLengthCycle rofolc = new ResultOfFindingOddLengthCycle();
@@ -77,14 +230,20 @@ public class FindOddLengthCycle {
 	}
 
 	public static void main(String[] args){
-		Graph G = Graph.readGraph(new Scanner(System.in),false);
+		Graph G = Graph.readGraph(new Scanner(System.in),true);
 		FindOddLengthCycle folc = new FindOddLengthCycle();
-		ResultOfBipartite rob = null;
+		//ResultOfBipartite rob = null;
+		List<Edge> getCycleEdgeList = folc.checkIfCycleExists(G);
+		
+		for (Edge e : getCycleEdgeList)
+			System.out.println(e);
 		
 		/*
 		 *  to check if the graph is bipartite in all the 
 		 *  components of the graph
 		 */
+		
+		/*
 		for (Vertex u : G.verts){
 			// null check for the 0th vertex
 			if (u != null){
@@ -103,5 +262,6 @@ public class FindOddLengthCycle {
 		}
 		else
 			System.out.println("The graph is bipartite");
+		*/
 	}
 }
